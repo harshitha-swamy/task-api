@@ -30,7 +30,7 @@ A production-grade REST API built with Laravel 12 demonstrating advanced archite
 
 **1. Clone the repository**
 ```bash
-git clone https://github.com/yourusername/task-api.git
+git clone https://github.com/harshitha-swamy/task-api.git
 cd task-api
 ```
 
@@ -244,3 +244,21 @@ Triggered automatically when a task is assigned or reassigned.
 - APM monitoring (Datadog / New Relic)
 - Slow query log monitoring
 - Alerting on queue depth and failed jobs
+
+---
+
+## Screenshots
+
+### ER Diagram
+![ER Diagram 1](docs/er-diagram-1.png)
+![ER Diagram 2](docs/er-diagram-2.png)
+![ER Diagram 3](docs/er-diagram-3.png)
+
+### Query EXPLAIN Analysis
+![EXPLAIN](docs/explain-query.png)
+
+---
+
+## Postman Collection
+
+Import `task-api-postman.json` into Postman to test all endpoints.

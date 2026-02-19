@@ -1,0 +1,108 @@
+{
+  "info": {
+    "name": "Task API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Register",
+          "request": {
+            "method": "POST",
+            "url": "http://127.0.0.1:8000/api/v1/register",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"Test User\",\n  \"email\": \"test@example.com\",\n  \"password\": \"password\",\n  \"password_confirmation\": \"password\"\n}"}
+          }
+        },
+        {
+          "name": "Login",
+          "request": {
+            "method": "POST",
+            "url": "http://127.0.0.1:8000/api/v1/login",
+            "header": [{"key": "Content-Type", "value": "application/json"}],
+            "body": {"mode": "raw", "raw": "{\n  \"email\": \"admin@taskapi.com\",\n  \"password\": \"password\"\n}"}
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "url": "http://127.0.0.1:8000/api/v1/logout",
+            "header": [{"key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE"}]
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tasks",
+      "item": [
+        {
+          "name": "List Tasks",
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/api/v1/tasks",
+            "header": [{"key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE"}]
+          }
+        },
+        {
+          "name": "List Tasks - Filter by Status",
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/api/v1/tasks?status=pending",
+            "header": [{"key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE"}]
+          }
+        },
+        {
+          "name": "Create Task",
+          "request": {
+            "method": "POST",
+            "url": "http://127.0.0.1:8000/api/v1/tasks",
+            "header": [
+              {"key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"My First Task\",\n  \"description\": \"Testing task creation\",\n  \"status\": \"pending\",\n  \"due_date\": \"2026-03-01\"\n}"}
+          }
+        },
+        {
+          "name": "Get Single Task",
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/api/v1/tasks/1",
+            "header": [{"key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE"}]
+          }
+        },
+        {
+          "name": "Update Task",
+          "request": {
+            "method": "PUT",
+            "url": "http://127.0.0.1:8000/api/v1/tasks/1",
+            "header": [
+              {"key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE"},
+              {"key": "Content-Type", "value": "application/json"}
+            ],
+            "body": {"mode": "raw", "raw": "{\n  \"title\": \"Updated Task\",\n  \"status\": \"in_progress\"\n}"}
+          }
+        },
+        {
+          "name": "Delete Task",
+          "request": {
+            "method": "DELETE",
+            "url": "http://127.0.0.1:8000/api/v1/tasks/1",
+            "header": [{"key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE"}]
+          }
+        },
+        {
+          "name": "Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "url": "http://127.0.0.1:8000/api/v1/dashboard",
+            "header": [{"key": "Authorization", "value": "Bearer YOUR_TOKEN_HERE"}]
+          }
+        }
+      ]
+    }
+  ]
+}
