@@ -1,6 +1,8 @@
 <?php
+
 namespace App\Services;
 
+use App\Models\Role;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
@@ -9,11 +11,14 @@ class AuthService
 {
     public function register(array $data): array
     {
+        // Get the default 'user' role from database
+        $defaultRole = Role::where('name', 'user')->first();
+
         $user = User::create([
             'name'     => $data['name'],
             'email'    => $data['email'],
             'password' => Hash::make($data['password']),
-            'role_id'  => $data['role_id'] ?? null,
+            'role_id'  => $defaultRole?->id, // automatically assign 'user' role
         ]);
 
         $token = $user->createToken('api-token')->plainTextToken;
