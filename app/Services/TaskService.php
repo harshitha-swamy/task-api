@@ -103,6 +103,9 @@ class TaskService
 
     private function clearDashboardCache(): void
     {
-        Cache::forget('dashboard_stats');
+        // Clear for all users (admin, manager, user)
+        User::pluck('id')->each(function ($userId) {
+            Cache::forget('dashboard_stats_' . $userId);
+        });
     }
 }
