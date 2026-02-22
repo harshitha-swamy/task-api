@@ -251,8 +251,7 @@ Triggered automatically when a task is assigned or reassigned.
 
 ### ER Diagram
 ![ER Diagram 1](docs/er-diagram-1.png)
-![ER Diagram 2](docs/er-diagram-2.png)
-![ER Diagram 3](docs/er-diagram-3.png)
+
 
 ### Query EXPLAIN Analysis
 ![EXPLAIN](docs/explain-query.png)
