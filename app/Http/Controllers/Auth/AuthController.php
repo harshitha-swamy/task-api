@@ -8,6 +8,7 @@ use App\Http\Requests\Auth\RegisterRequest;
 use App\Services\AuthService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use App\Http\Resources\UserResource;
 
 class AuthController extends Controller
 {
@@ -19,7 +20,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Registration successful.',
-            'user'    => $result['user'],
+            'user'    => new UserResource($result['user']), //$result['user'],
             'token'   => $result['token'],
         ], 201);
     }
@@ -34,7 +35,7 @@ class AuthController extends Controller
 
         return response()->json([
             'message' => 'Login successful.',
-            'user'    => $result['user'],
+            'user'    => new UserResource($result['user']), // ← filtered!
             'token'   => $result['token'],
         ]);
     }

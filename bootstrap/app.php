@@ -4,6 +4,8 @@ use App\Http\Middleware\CheckPermission;
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Auth\AuthenticationException;
+use Illuminate\Http\Request;
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -16,7 +18,21 @@ return Application::configure(basePath: dirname(__DIR__))
         $middleware->alias([
             'permission' => CheckPermission::class,
         ]);
+
+        // Tell Laravel: API routes should return JSON!
+        $middleware->redirectGuestsTo(function (Request $request) {
+            if ($request->is('api/*')) {
+                return null; // Don't redirect!
+            }
+        });
     })
     ->withExceptions(function (Exceptions $exceptions) {
-        //
+        $exceptions->render(function (
+            AuthenticationException $e,
+            Request $request
+        ) {
+            return response()->json([
+                'message' => 'Unauthenticated.'
+            ], 401);
+        });
     })->create();
